@@ -1,21 +1,17 @@
 # Command Design Pattern
 
-This section covers the Command Design Pattern in PHP.
-
 ## Description
 
-The Command Pattern encapsulates a request as an object, thereby allowing clients to be parameterized with different requests. It also supports operations like queuing, logging, and undoable actions. The pattern includes an `Invoker` component that triggers the command, a `Command` interface, concrete `Command` classes implementing the interface, and a `Receiver` that performs the actual work.
+The Command Pattern in PHP is a behavioral design pattern that turns a request into a stand-alone object. It contains all information about the request and separates concerns between the issuer of the request and the object that executes it.
 
 ## PHP Implementation
 
-In the provided PHP example, we have a `Light` class (Receiver) that has methods to turn on and off. The `TurnOnLightCommand` class (Concrete Command) implements the `Command` interface and executes the light's `turnOn` method. The `RemoteControl` class (Invoker) can be set with any command and executes it when its button is pressed.
+In this PHP example, the Command Pattern is demonstrated with a `Light` class (Receiver), a `TurnOnLightCommand` class (Concrete Command), and a `RemoteControl` class (Invoker). The Command interface defines an `execute` method, implemented by the concrete command. The invoker class triggers the command without needing to know the specifics of the operation.
 
 ## Usage
 
-Use the Command Pattern when you want to:
-- Decouple the sender of a request from its receiver.
-- Support undoable operations.
-- Implement callback functionality.
-- Handle operations queues.
+- Decoupling command issuers from executors.
+- Implementing undo/redo operations.
+- Parameterizing objects based on an action to perform.
 
-Refer to the provided PHP code for a practical implementation example.
+Refer to the provided PHP code for a detailed implementation.

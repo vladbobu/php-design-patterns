@@ -1,22 +1,22 @@
 <?php
 
-// Command interface
+// Command Interface
 interface Command
 {
-    public function execute();
+    public function execute(): void;
 }
 
 // Concrete Command
 class TurnOnLightCommand implements Command
 {
-    protected $light;
+    private Light $light;
 
     public function __construct(Light $light)
     {
         $this->light = $light;
     }
 
-    public function execute()
+    public function execute(): void
     {
         $this->light->turnOn();
     }
@@ -25,30 +25,32 @@ class TurnOnLightCommand implements Command
 // Receiver
 class Light
 {
-    public function turnOn()
+    public function turnOn(): void
     {
-        echo "Light is on\n";
+        echo "Light is on.\n";
     }
 
-    public function turnOff()
+    public function turnOff(): void
     {
-        echo "Light is off\n";
+        echo "Light is off.\n";
     }
 }
 
 // Invoker
 class RemoteControl
 {
-    private $command;
+    private ?Command $command = null;
 
-    public function setCommand(Command $command)
+    public function setCommand(Command $command): void
     {
         $this->command = $command;
     }
 
-    public function pressButton()
+    public function pressButton(): void
     {
-        $this->command->execute();
+        if ($this->command) {
+            $this->command->execute();
+        }
     }
 }
 
